@@ -75,3 +75,5 @@ Original files are backed up in a separate folder.
 
 
 Data Limitations: As riders’ personal identifiable information is hidden, thus will not be able to connect pass purchases to credit cards numbers to determine if casual riders live in the Cyclistic service area or if they have purchased multiple single passes.
+
+
