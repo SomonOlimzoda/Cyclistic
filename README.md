@@ -1,5 +1,5 @@
 ---
-title: "Google Data Analytics Capstone Project #1"
+title: "Google Data Analytics Capstone Project"
 subtitle: "Cyclistic Case Study"
 author: "Somon Olimzoda"
 date: "23/12/2022"
