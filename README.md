@@ -1,79 +1,77 @@
----
-title: "Google Data Analytics Capstone Project"
-subtitle: "Cyclistic Case Study"
-author: "Somon Olimzoda"
-date: "23/12/2022"
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
 
-### Introdution
+## Cyclistic: Bike Share Analysis 
 
-For the capstone project of the Google Data Analytics certificate, I have chosen the Cyclistic bike share data to work on. For the case study, I will perform real-world tasks of a junior data analyst for the marketing team at Cyclistic, a fictional bike-share company in Chicago.
-To answer key business questions, I will follow the six steps of the data analysis process : Ask, Prepare, Process, Analyze, Share and Act.
+### Scenario
 
+As a junior data analyst working in the marketing analyst team at Cyclistic, a bike-share company in Chicago. The director of marketing believes the company’s future success depends on maximizing the number of annual memberships. Therefore, your team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, your team will design a new marketing strategy to convert casual riders into annual members. But first, Cyclistic executives must approve your recommendations, so they must be backed up with compelling data insights and professional data visualizations.
 
-### The scenario
+### About the company
 
-The director of marketing of Cyclistic, Lily Moreno, believes that the company’s future growth depends on maximizing the number of annual memberships. Hence, the marketing analyst team wants to understand how casual riders and annual members use Cyclistic bikes differently. From these insights, the analytics team could be able to design a new marketing strategy to convert casual riders into annual members. 
+In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime. Customers who purchase single-ride or full-day passes are referred to as casual riders. Customers who purchase annual memberships are Cyclistic members. 
+
+Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. The director of marketing believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs. 
+
+To design new marketing strategies, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics.
+
+In order to answer the key business questions, I will follow the steps of the data analysis process: **ask, prepare, process, analyze, share,** and **act.**
+
+### Product background
+* 5,824 bicycles and 692 docking stations
+* majority of riders opt for traditional bikes
+* 8% of riders use the assistive options
+* users are more likely to ride for leisure
+* 30% of riders use to commute to work each day
+* casual riders have chosen Cyclistic for their mobility needs
+
+## 1. Ask
 
 Three questions will guide the future marketing campaign:
 
-1.How do annual members and casual riders use Cyclistic bikes differently?
+  1. How do annual members and casual riders use Cyclistic bikes differently?
+  2. Why would casual riders buy Cyclistic annual memberships?
+  3. How can Cyclistic use digital media to influence casual riders to become members?
 
-2.Why would casual riders buy Cyclistic annual memberships?
+Moreno has assigned to find answer: 
+**How do annual members and casual riders use Cyclistic bikes differently?**
 
-3.How can Cyclistic use digital media to influence casual riders to become members?
+#### 1. Identify the business task
+What is the reason annual members and casual riders use rental bikes differently? By design a marketing strategy to convert casual riders into annual members. The director of marketing and finance analysts inferred that annual members are way more profitable compared to casual riders.
 
-I have been assigned by Moreno the first question. 
+#### 2. Stakeholders
+* Lily Moreno, Marketing Director
+* Cyclistic marketing analytics team
+* Cyclistic executive team
 
+## 2. Prepare 
 
-### The Ask phase
+#### 1. Download data and store it appropriately. 
+This is public data and has been downloaded from [Motivate International Inc.](https://divvy-tripdata.s3.amazonaws.com/index.html) a period of 12 months, from the start of April 2020 to the end of May 2021 under this [license](https://ride.divvybikes.com/data-license-agreement). So, I decided to store the original files in my laptop. Also, I made copies of each dataset, in case the originals need to be referenced.
 
-* A statement of the business task: 
+#### 2. Identify how it’s organized. 
+All downloaded files are saved in (CSV) format. Columns in total 13: 
 
-Cyclistic has concluded that annual members are much more profitable than casual riders. So, we want to design a marketing strategies and a campaign that helps us converting casual riders into annual members. 
+ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat,  
+start_lng, end_lng, member_casual
 
-* My key stakeholders are: 
+#### 3. Sort and filter the data.
+Due to the large size of the dataset, data processing will be done using the R programming language and R Studio.
 
-1-Lily Moreno: The director of marketing and my manager. Moreno has initiated   this  strategy. The first stakeholder to deliver to. 
+#### 4. Determine the credibility of the data.
+ 
+There are no issues with bias or credibility in this data. ROCCC approach is used to determine the credibility of the data(reliable, original, comprehensive, current and cited):
+* reliable - small amount of records have missing values but represents all bike rides taken in the city of Chicago
+* original - the data is made available by Motivate International Inc.
+* comprehensive - the data includes all information about ride details
+* current - it is up-to-date as it includes data until end of May 2021
+* cited - the data is cited and is available under Data License Agreement
 
-2-The executive team: For Moreno´s idea to work, the executive team must approve our recommendations, so so they must be backed up with compelling data insights and professional data visualizations.
+## 3. Process
 
+1. Check the data for errors.
+2. Choose your tools.
+3. Transform the data so you can work with it effectively. 
+4. Document the cleaning process.
 
-### The Prepare phase
+Here, I use several libraries that help reading, cleaning, organizing and analyzing the data.1. Tools: R Programming is used for its ability to handle huge datasets efficiently. Microsoft Excel is used for further analysis and visualization.
 
-Data Source: 
-Past 12 month of original bike share data set from 01/01/2021 to 31/12/2021 was extracted as 12 zipped .csv [files](https://divvy-tripdata.s3.amazonaws.com/index.html). The data is made available and licensed by Motivate International Inc under this [license](https://ride.divvybikes.com/data-license-agreement).
-
-Data Organization & Description:
-
-File naming convention: YYYY_MM
-
-File Type:  csv  format 
-
-File Content: Each csv file consist of 13 columns which contain information related to ride id, rider type, ride start and end time, start and end location  etc. Number of rows varies between 49k to 531k from different excel files.
-
-
-Data credibility: 
-
-The data set is reliable, the data is complete and accurate for the chosen time window.
-
-The data is original, it is a first arty information.
-
-The data is comprehensive, the data set contains all information needed to answer the question.
-
-The data is current, rider data of the last 12 months was used.
-
-The data is cited and vetted by Chicago department of transportation.
-
-
-Data Security: Riders’ personal identifiable information is hidden through tokenization.
-
-Original files are backed up in a separate folder.
-
-
-Data Limitations: As riders’ personal identifiable information is hidden, thus will not be able to connect pass purchases to credit cards numbers to determine if casual riders live in the Cyclistic service area or if they have purchased multiple single passes.
-
-
+1. Tools: R Programming is used for its ability to handle huge datasets efficiently. Microsoft Excel is used for further analysis and visualization.
