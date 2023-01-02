@@ -88,7 +88,7 @@ You can to view the R script and the summary of complete analysis process [here]
 
 Further analysis were carried out to perform calculations, identify trends and relationships using PivotTable and Charts in Excel. 
 
-You can view my Excel files used for analysis process [here](https://github.com/SomonOlimzoda/MyProjects/blob/main/worksheet%20summary.xlsx).
+You can view my Excel files used for visualizations and insights [here](https://github.com/SomonOlimzoda/MyProjects/blob/main/worksheet%20summary.xlsx).
 
 ## 5. Share
 Now that I have performed analysis and gained some insights from data, where we gonna create compelling visualizations in order to effectively communicate to the executive team and share findings. As a tool I chosed to use Tableau. Tableau is a leading data visualization tool used for data analysis and business intelligence helps to create different charts and graphs, in addition to visualizing data through reports and dashboards in Tableau to derive meaningful insights. 
