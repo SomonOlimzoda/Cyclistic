@@ -36,7 +36,7 @@ december <- read_csv("december.csv")
 #Step 2. Wrangle data and combine into one a single file
 # Compare column names each of the files
 Compare column names each of the files. While the names don't have to be in the same order, they DO need to match perfectly before they are  joined  into one file
-```{r colname inspection, echo=TRUE, eval=TRUE}
+```bash
 colnames(january)
 colnames(february)
 colnames(march)
