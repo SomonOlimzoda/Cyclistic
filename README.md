@@ -45,7 +45,7 @@ What is the reason annual members and casual riders use rental bikes differently
 ## 2. Prepare 
 
 #### Download data and store it appropriately 
-This is public data and has been downloaded from [Motivate International Inc.](https://divvy-tripdata.s3.amazonaws.com/index.html) a period of 12 months, from the start of April 2020 to the end of May 2021 under this [license](https://ride.divvybikes.com/data-license-agreement). So, I decided to store the original files in my laptop. Also, I made copies of each dataset, in case the originals need to be referenced.
+This is public data and has been downloaded from [Motivate International Inc.](https://divvy-tripdata.s3.amazonaws.com/index.html) a period of 12 months, from the start of April 2020 to the end of March 2021 under this [license](https://ride.divvybikes.com/data-license-agreement). So, I decided to store the original files in my laptop. Also, I made copies of each dataset, in case the originals need to be referenced.
 
 #### Identify how it’s organized 
 All downloaded files are saved in (CSV) format. Columns in total 13: 
@@ -70,7 +70,7 @@ There are no issues with bias or credibility in this data. ROCCC approach is use
 R Programming is used for its ability to handle huge datasets efficiently. I used R for data verification and cleaning. The 12 data sets combined will contain more than 3 million rows(3,489,748) of data. Excel worksheet limitation is 1,048,576 rows. Moreover, some csv files could not be uploaded to BigQuery for file size problems(unable to upload a file size over 100mb if there is no paid account). Thus, I use R to perform all tasks from organizing, cleaning analyzing and visualizing data.
 
 #### Importing data 
-All data sets were imported into R Studio from from 04/2020 until 05/2021 and read as .csv files. Next, stack individual each month data frames into one big data frame using function bind_rows() which is similar to union all query in SQL. Also, it was determined that for the purpose of this analysis the columns start_lat, start_lng, end_lat and end_lng were not required.
+All data sets were imported into R Studio from from 04/2020 until 03/2021 and read as .csv files. Next, stack individual each month data frames into one big data frame using function bind_rows() which is similar to union all query in SQL. Also, it was determined that for the purpose of this analysis the columns start_lat, start_lng, end_lat and end_lng were not required.
 
 #### Clean up and add data to prepare for analysis
 The contents of the datasets were inspected by using the colnames(), nrow(), dim(), head(), str() and summary() functions. The data can only be aggregated at the ride-level, which is too granular. We will want to add some additional columns of data: such as day, month, year that provide additional opportunities to aggregate the data. And we will add two new columns ride_length to the entire dataframe for consistency by calculating by using the started_at and ended_at time values. The ride_length is calculated in seconds and minutes. The day of the week that rides occurred on was also created in a new column using the weekdays() function. And we had checked to see if there were any negative values in the ride_length column as that would indicate the ride ended before it began or start_time and end_time were swapped for these rides, so negative results were excluded).
@@ -88,7 +88,7 @@ You can to view the R script and the summary of complete analysis process [here]
 
 Further analysis were carried out to perform calculations, identify trends and relationships using PivotTable and Charts in Excel. 
 
-You can view my Excel files used for visualizations and insights [here](https://github.com/SomonOlimzoda/MyProjects/blob/main/worksheet%20summary.xlsx).
+You can view my Excel file used for visualizations and insights [here](https://github.com/SomonOlimzoda/MyProjects/blob/main/worksheet%20summary.xlsx).
 
 ## 5. Share
 Now that I have performed analysis and gained some insights from data, where we gonna create compelling visualizations in order to effectively communicate to the executive team and share findings. As a tool I chosed to use Tableau. Tableau is a leading data visualization tool used for data analysis and business intelligence helps to create different charts and graphs, in addition to visualizing data through reports and dashboards in Tableau to derive meaningful insights. 
