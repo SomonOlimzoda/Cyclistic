@@ -314,13 +314,13 @@ vizs_7 <- table(all_trips_v1$month)
 ```
 
 ```
-write.csv(vizs_1, file = '/Users/Administrator/Desktop/cyclistic.csv')
-write.csv(vizs_2, file = '/Users/Administrator/Desktop/cyclistic.csv') 
-write.csv(vizs_3, file = '/Users/Administrator/Desktop/cyclistic.csv') 
-write.csv(vizs_4, file = '/Users/Administrator/Desktop/cyclistic.csv') 
-write.csv(vizs_5, file = '/Users/Administrator/Desktop/cyclistic.csv') 
-write.csv(vizs_6, file = '/Users/Administrator/Desktop/cyclistic.csv') 
-write.csv(vizs_7, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_1, file = "1.csv", row.names = FALSE)
+write.csv(vizs_2, file = "2.csv", row.names = FALSE)
+write.csv(vizs_3, file = "3.csv", row.names = FALSE) 
+write.csv(vizs_4, file = "4.csv", row.names = FALSE)
+write.csv(vizs_5, file = "5.csv", row.names = FALSE)
+write.csv(vizs_6, file = "6.csv", row.names = FALSE) 
+write.csv(vizs_7, file = "7.csv", row.names = FALSE)
 ```
 
 #We are done!
