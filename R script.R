@@ -1,9 +1,10 @@
 
 ## Analyze ##
-The purpose of this script is to consolidate downloaded Divvy data into a single data frame and then conduct simple analysis to help answer the key question:
+
+# The purpose of this script is to consolidate downloaded Divvy data into a single data frame and then conduct simple analysis to help answer the key question:
 “In what ways do members and casual riders use Divvy bikes differently?”
 
-##  (Setting up my work environment on R and upload the dataset)
+# (Setting up my work environment on R and upload the dataset)
 
 # Load required packages
 
@@ -140,7 +141,7 @@ table(all_trips$day_of_week)
 
 ```
 
-# Now, it is time to add columns that list the date, month, day, and year of each ride. This will allow us to aggregate ride data for each month, day, or year.
+# Now, it is time to add columns that list the date, month, day, and year of each ride. This will allow us to aggregate ride data for each month, day, or year
 
 ```
 all_trips$date <- as.Date(all_trips$started_at) #The default format is yyyy-mm-dd
@@ -221,7 +222,7 @@ aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual, FUN = median)
 Total mean ride length for casual riders is 44.9 minutes and 16.1 minutes for members
 Total mean ride length for casual riders is 21.2 minutes and 11.4 minutes for members
 
-# Before we run the average ride time by each day for members vs casual users it was noticed that the days of the week are out of order. Let's fix that
+# Before we run the average ride time by each day for members vs casual users it was noticed that the days of the week are out of order
 
 ```
 all_trips_v1$day_of_week <- ordered(all_trips_v1$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
@@ -237,7 +238,7 @@ all_trips_v1$day_of_week <- ordered(all_trips_v1$day_of_week, levels=c("Sunday",
 aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual + all_trips_v1$month, FUN = mean)
 ```
 
-# Now let's analyze ridership data by type and weekday
+# Analyze ridership data by type and weekday
 
 ```
 all_trips_v1 %>% 
@@ -248,7 +249,7 @@ all_trips_v1 %>%
   arrange(member_casual, weekday)								        # sorts
 ```
 
-# Now let's analyze ridership data by type and month
+# Analyze ridership data by type and month
 
 ```
 all_trips_v1 %>% 
@@ -259,7 +260,7 @@ all_trips_v1 %>%
   arrange(member_casual, month)		
 ```
 
-# Let's visualize the number of rides by rider type
+# Visualize the number of rides by rider type
 
 ```
 all_trips_v1 %>% 
@@ -272,7 +273,7 @@ all_trips_v1 %>%
   geom_col(position = "dodge")
 ```
 
-# Let's create a visualization for average duration
+# Visualization for average duration
 
 ```
 all_trips_v1 %>% 
@@ -285,7 +286,7 @@ all_trips_v1 %>%
   geom_col(position = "dodge")
 ```
 
-#  Let's visualize an average ride length depending on rider type and number of each rider type
+#  Visualize an average ride length depending on rider type and number of each rider type
 
 ```
 all_trips_v1 %>%
@@ -295,5 +296,31 @@ all_trips_v1 %>%
   geom_col()+ scale_y_continuous(breaks = seq(0, 50, by = 5))
 ```
 
-The visualization shows that casual riders tend to rent bikes for longer mean durations (45 min to 16.1 min) than members.
+# The visualization shows that casual riders tend to rent bikes for longer mean durations (45 min to 16.1 min) than members.
+# It means that casual riders use to ride bikes far more(2.7 to 3x more) despite the fewer rides. Whereas members use bikes far less but consistently over a year
 
+#Step5. Export summary file for further analysis
+
+# Create a csv file that we will visualize in Excel, Tableau, or my presentation software
+
+```
+vizs_1 <- aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual + all_trips_v1$day_of_week, FUN = mean)
+vizs_2 <- aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual + all_trips_v1$rideable_type, FUN = mean)
+vizs_3 <- aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual + all_trips_v1$month, FUN = mean)
+vizs_4 <- table(all_trips$member_casual)
+vizs_5 <- table(all_trips$day_of_week)
+vizs_6 <- table(all_trips_v1$rideable_type)
+vizs_7 <- table(all_trips_v1$month)
+```
+
+```
+write.csv(vizs_1, file = '/Users/Administrator/Desktop/cyclistic.csv')
+write.csv(vizs_2, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_3, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_4, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_5, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_6, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+write.csv(vizs_7, file = '/Users/Administrator/Desktop/cyclistic.csv') 
+```
+
+#We are done!
