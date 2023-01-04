@@ -292,11 +292,8 @@ all_trips_v1 %>%
   group_by(member_casual) %>%
   summarise(max(ride_length_m), min(ride_length_m),avg_ride_length = mean(ride_length_m)) %>% 
   ggplot(aes(x = member_casual, y = avg_ride_length,fill=member_casual)) +
-  geom_col()+ scale_y_continuous(breaks = seq(0, 60, by = 5))
+  geom_col()+ scale_y_continuous(breaks = seq(0, 50, by = 5))
 ```
 
 The visualization shows that casual riders tend to rent bikes for longer mean durations (45 min to 16.1 min) than members.
 
-```
-
-```
