@@ -84,7 +84,7 @@ mutate() creates weekday field, group_by() groups by usertype and weekday, summa
 
 Now data is stored appropriately and has been prepared for analysis, let's start putting it to work.
 
-You can to view the R script and the summary of complete analysis process [here](https://github.com/SomonOlimzoda/MyProjects/edit/main/R%20script). 
+You can to view the R script and the summary of complete analysis process [here](https://github.com/SomonOlimzoda/MyProjects/blob/main/R%20script.R). 
 
 Further analysis were carried out to perform calculations, identify trends and relationships using PivotTable and Charts in Excel. 
 
