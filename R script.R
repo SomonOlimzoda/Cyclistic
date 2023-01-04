@@ -3,7 +3,7 @@
 The purpose of this script is to consolidate downloaded Divvy data into a single data frame and then conduct simple analysis to help answer the key question:
 “In what ways do members and casual riders use Divvy bikes differently?”
 
-##  (Setting up my work environment on R and upload the dataset)  ##
+##  (Setting up my work environment on R and upload the dataset)
 
 # Load required packages
 
@@ -19,7 +19,7 @@ setwd("/Users/Administrator/Desktop/cyclistic/csv") #sets your working directory
 
 #Step 1. Collect Data
 
-Cyclist data from 04/2020 until 05/2021 were imported and read as csv. files
+Cyclist data from 04/2020 until 03/2021 were imported and read as csv. files
 # Upload Divvy datasets (csv files) here
 
 ```
@@ -74,8 +74,8 @@ str(november)
 str(december)
 ```
 
-After inspecting our dataframes following were noticed:
-files january, february, march, and december contain wrong data types. Start_station_id and end_station_id should be converted to numeric.
+# After inspecting our dataframes following were noticed:
+files january, february, march, and december contain wrong data types. Start_station_id and end_station_id should be converted to numeric
 
 ```
 january <-  mutate(january, start_station_id   = as.numeric(start_station_id)
@@ -88,35 +88,35 @@ december <-  mutate(december, start_station_name  = as.character(start_station_n
                    ,end_station_name = as.character(end_station_name)) 
 ```
 
-#combining all datasets into one data frame
+# Combining all datasets into one data frame
 
 ```
 all_trips <- rbind(january, february, march, april, may, june, july, august, september, october, november, december)
 ```
-
 or alternatively we can use following function:
-
 ```
 all_trips <- bind_rows(january, february, march, april, may, june, july, august, september, october, november, december)
 ```
 
-It was determined that for the purpose of this analysis the columns start_lat, start_lng, end_lat and end_lng were not required.
+It was determined that for the purpose of this analysis the columns start_lat, start_lng, end_lat and end_lng were not required
 
 ```
 all_trips <- all_trips %>%  
   select(-c(start_lat, start_lng, end_lat, end_lng))
 ```
 
-##Dropping the missing values from the dataset
+# To find in which columns the missing values are:
 
 ```
-all_trips <- na.omit(all_trips)
+colSums(is.na(all_trips))
 ```
 
-After dropping the missing values 3294375 out of 3489748 remain. meaning that 195373 missing values are removed (5.6%)
+# All missing values reside in the start_station_name/end_station_name and  start_station_id and  end_station_id columns
 
-```
+
 # Inspect the new table that has been created
+
+```
 colnames(all_trips)  #List of column names
 nrow(all_trips)      #How many rows are in data frame
 dim(all_trips)       #Dimensions of the data frame
@@ -140,8 +140,7 @@ table(all_trips$day_of_week)
 
 ```
 
-# Now, it is time to add columns that list the date, month, day, and year of each ride. 
-This will allow us to aggregate ride data for each month, day, or year.
+# Now, it is time to add columns that list the date, month, day, and year of each ride. This will allow us to aggregate ride data for each month, day, or year.
 
 ```
 all_trips$date <- as.Date(all_trips$started_at) #The default format is yyyy-mm-dd
@@ -173,7 +172,7 @@ all_trips$month <- as.numeric(all_trips$month)
 all_trips$day <- as.numeric(all_trips$day)
 ```
 
-#   Check the data to confirm is has been converted
+# Check the data to confirm is has been converted
 
 ```
 is.numeric(all_trips$ride_length)
@@ -183,25 +182,34 @@ is.numeric(all_trips$day)
 ```
 
 # After converting and inspecting data, it was found column (ride_length) has some negative values. It might be because of start_time and end_time 
-were swapped for these rides, or the system simply registered recorded rides incorrectly. Well, negative resultes should be deleted.
+were swapped for these rides, or system simply registere bike rides incorrectly. Well, negative resultes should be deleted.
 
 ```
 all_trips_v1 <- all_trips[!( all_trips$ride_length < 0),]
 ```
 
+# 10,084 negative values were deleted. Now, we can see our summary:
+
+```
+skimr::skim_without_charts(all_trips_v1)
+```
+
+# number of rows 3479196 and total of 16 columns.
+
+
 #Step 4. Organize descriptive analysis  
 
-A descriptive analysis both on ride length (in minutes and seconds) has been performed. 
+# A descriptive analysis both on ride length (in minutes and seconds) has been performed 
 
 ```
 all_trips_v1 %>% 
-  summarise(max(ride_length),min(ride_length),mean(ride_length)) 
+  summarise(max(ride_length),min(ride_length),mean(ride_length),median(ride_length))
 all_trips_v1 %>% 
-  summarise(max(ride_length_m),min(ride_length_m),mean(ride_length_m)) 
+  summarise(max(ride_length_m),min(ride_length_m),mean(ride_length_m),median(ride_length_m))
 ```
 
-Total mean ride length is 27.95 minutes or 1677.04 in seconds
-Total median ride length is 14.56 minutes or 874 in seconds
+Total mean ride length is 27.9 minutes or 1677 in seconds
+Total median ride length is 14.6 minutes or 874 in seconds
 
 # Compare average ride length in minutes both for members and casual users 
 
@@ -210,16 +218,14 @@ aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual, FUN = mean)
 aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual, FUN = median)
 ```
 
-Total mean ride length for casual riders is 44.96 minutes and 16.11 minutes for members.
-Total mean ride length for casual riders is 21.2 minutes and 11.5 minutes for members.
+Total mean ride length for casual riders is 44.9 minutes and 16.1 minutes for members
+Total mean ride length for casual riders is 21.2 minutes and 11.4 minutes for members
 
 # Before we run the average ride time by each day for members vs casual users it was noticed that the days of the week are out of order. Let's fix that
 
 ```
 all_trips_v1$day_of_week <- ordered(all_trips_v1$day_of_week, levels=c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
 ```
-
-
 
 ```
  aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual + all_trips_v1$day_of_week, FUN = mean)
@@ -238,7 +244,7 @@ all_trips_v1 %>%
   mutate(weekday = wday(started_at, label = TRUE)) %>%  #creates weekday field using wday()
   group_by(member_casual, weekday) %>%                  #groups by usertype and weekday
   summarise(number_of_rides = n()							          #calculates the number of rides and average duration 
-  ,average_duration = mean(ride_length_m)) %>% 		        # calculates the average duration
+  ,average_duration = mean(ride_length_m)) %>% 		      # calculates the average duration
   arrange(member_casual, weekday)								        # sorts
 ```
 
@@ -294,44 +300,3 @@ The visualization shows that casual riders tend to rent bikes for longer mean du
 ```
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
