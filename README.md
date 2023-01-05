@@ -106,29 +106,13 @@ Now I have finished creating all visualizations, I will start acting on key find
 * On weekends, members ride less than casual riders
 * Casual users ride 2.7-3 times longer than members
 
-### Top three recommendations
+### My recommendations
 
+The data shows that members rent bikes mainly for regular commutes to work or school. The reason is the number of trips and the average trips duration being consistent every day. Whereas, casual rent is lower from Monday to Friday and increases from Friday and peaks at the weekend. Most likely casuals using bikes for leisure activities(touring the city, sightseeing, etc).
 
+1. Either offer a discount to casual riders or drop the price on weekdays as the ride and duration is longer on weekends. This will evoke the interest of casual riders and encourage them to upgrade to an annual membership.
 
+2. Run a loyalty program where both member and casual riders get bonuses or rewards for trips, but casual riders can't use those rewards. This may encourage them to sign up for an annual membership.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+3. As the use of casuals peaks on weekends, Moreno and the marketing campaign can add a new weekend-only price subscription at a reasonable price. This could attract casual riders to convert to annual membership.
 
