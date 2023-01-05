@@ -220,7 +220,7 @@ aggregate(all_trips_v1$ride_length_m ~ all_trips_v1$member_casual, FUN = median)
 ```
 
 Total mean ride length for casual riders is 44.9 minutes and 16.1 minutes for members
-Total mean ride length for casual riders is 21.2 minutes and 11.4 minutes for members
+Total median ride length for casual riders is 21.2 minutes and 11.4 minutes for members
 
 # Before we run the average ride time by each day for members vs casual users it was noticed that the days of the week are out of order
 
