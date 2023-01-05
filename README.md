@@ -98,14 +98,15 @@ You can my view Tableau visualizations [here](https://public.tableau.com/app/pro
 ## 6. Act
 Now I have finished creating all visualizations, I will start acting on key findings. Prepare the deliverables Morena asked me to create, including the three top recommendations based on analysis had been carried out.
 
+### Key takeaways
 
+*	Total average trip duration is 44.9 mins for casuals and 16.1 mins for members
+* Whether being a member or casual rider, Saturday is the day when bikes are rented most
+* Casuals spend more time despite the fewer rides and vice versa for members
+* On weekends, members ride less than casual riders
+* Casual users ride 2.7-3 times longer than members
 
-
-
-
-
-
-
+### Top three recommendations
 
 
 
