@@ -9,7 +9,7 @@ As a junior data analyst working in the marketing analyst team at Cyclistic, a b
 
 In 2016, Cyclistic launched a successful bike-share offering. Since then, the program has grown to a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime. Customers who purchase single-ride or full-day passes are referred to as casual riders. Customers who purchase annual memberships are Cyclistic members. 
 
-Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. The director of marketing believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs. 
+Cyclistic’s finance analysts have concluded that annual members are much more profitable than casual riders. The director of marketing(Moreno) believes that maximizing the number of annual members will be key to future growth. Rather than creating a marketing campaign that targets all-new customers, Moreno believes there is a very good chance to convert casual riders into members. She notes that casual riders are already aware of the Cyclistic program and have chosen Cyclistic for their mobility needs. 
 
 To design new marketing strategies, the marketing analyst team needs to better understand how annual members and casual riders differ, why casual riders would buy a membership, and how digital media could affect their marketing tactics.
 
@@ -67,7 +67,7 @@ There are no issues with bias or credibility in this data. ROCCC approach is use
 ## 3. Process
 
 #### Tool of your choice
-R Programming is used for its ability to handle huge datasets efficiently. I used R for data verification and cleaning. The 12 data sets combined will contain more than 3 million rows(3,489,748) of data. Excel worksheet limitation is 1,048,576 rows. Moreover, some csv files could not be uploaded to BigQuery for file size problems(unable to upload a file size over 100mb if there is no paid account). Thus, I use R to perform all tasks from organizing, cleaning analyzing and visualizing data.
+R Programming is used for its ability to handle huge datasets efficiently. I used R for data verification and cleaning. The 12 data sets combined will contain more than 3 million rows(3,489,748) of data. Excel worksheet limitation is 1,048,576 rows. Moreover, some csv files could not be uploaded to BigQuery for file size problems(unable to upload a file size over 100mb if there is no paid account). Thus, I used R to perform all tasks from organizing, cleaning analyzing and visualizing data.
 
 #### Importing data 
 All data sets were imported into R Studio from from 04/2020 until 03/2021 and read as .csv files. Next, stack individual each month data frames into one big data frame using function bind_rows() which is similar to union all query in SQL. Also, it was determined that for the purpose of this analysis the columns start_lat, start_lng, end_lat and end_lng were not required.
@@ -100,7 +100,7 @@ Now I have finished creating all visualizations, I will start acting on key find
 
 ### Key takeaways
 
-*	Total average trip duration is 44.9 mins for casuals and 16.1 mins for members
+*	Total average trip duration is 44.9 mins casuals, 16.1 mins members
 * Whether being a member or casual rider, Saturday is the day when bikes are rented most
 * Casuals spend more time despite the fewer rides and vice versa for members
 * On weekends, members ride less than casual riders
