@@ -1,8 +1,6 @@
 
 ## Cyclistic: Bike Share Analysis 
 
-### Introduction
-
 **Cyclistic**
 
 These datasets are used for the case study as the capstone project in Google Data Analytics course on Coursera
